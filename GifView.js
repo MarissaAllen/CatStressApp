@@ -1,3 +1,5 @@
+import request from 'superagent';
+
 'use strict';
 
 var React = require('react-native');
@@ -46,8 +48,17 @@ var styles = StyleSheet.create({
   height: 300
   }
 });
+function urlForQuery() {
+  return 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
+};
 
 class GifView extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    gifs: [],
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -55,15 +66,29 @@ class GifView extends Component {
           underlayColor='#99d9f4'>
           <Text style={styles.buttonText} onPress={this.onDonePressed.bind(this)}>Done</Text>
         </TouchableHighlight>
-        <Image style={styles.image}
-          source={require('./cavey.jpg')} />
+          <Image style={styles.image}
+            source={require('./cavey.jpg')} />
         <Text style={styles.description}>
           Soon there will be Gif Cats here
         </Text>
+        <TouchableHighlight style={styles.button}
+          underlayColor='#99d9f4'>
+          <Text style={styles.buttonText} onPress={this.onNextPressed.bind(this)}>Next</Text>
+        </TouchableHighlight>
       </View>
     );
   }
 
-onDonePressed() {}
+  onDonePressed() {}
+
+  onNextPressed() {
+    var query = urlForQuery();
+    request.get(query, function(err, res) {
+      console.log(query);
+      console.log(res.body.data[0]);
+     });
+  }
 }
+
+
 module.exports = GifView;
