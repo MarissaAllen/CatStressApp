@@ -51,7 +51,13 @@ var styles = StyleSheet.create({
 
 
 class GifView extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      gifs: this.props.gifs
+};
+  }
+  // console.log(gifs[0]);
   render() {
 
       return(
@@ -62,6 +68,8 @@ class GifView extends Component {
        </TouchableHighlight>
          <Image style={styles.image}
            source={require('./cavey.jpg')} />
+         {/*<Image style={styles.image} source={{ uri: gifs[0].images.downsized.url }} />*/}
+
        <Text style={styles.description}>
          Soon there will be Gif Cats here
        </Text>
