@@ -71,8 +71,8 @@ class GifView extends Component {
       this.setState({gifs: res.body.data})
     });
   }
-  // console.log(gifs[0]);
   render() {
+    console.log(this.state.gifs[0]);
 
       return(
      <View style={styles.container}>
