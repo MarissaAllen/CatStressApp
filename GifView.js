@@ -57,8 +57,8 @@ class GifView extends Component {
       gifs: this.props.gifs
 };
   }
-  // console.log(gifs[0]);
   render() {
+    console.log(this.state.gifs[0]);
 
       return(
      <View style={styles.container}>
