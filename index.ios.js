@@ -49,7 +49,7 @@ class GiphyCatsApp extends Component {
     var query = urlForQuery;
     request.get(query, (err, res) => {
         // console.log(query);
-        // console.log(res.body.data[0]);
+        console.log(res.body.data[0]);
       this.setState({gifs: res.body.data})
     });
   }

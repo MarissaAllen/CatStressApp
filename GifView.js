@@ -49,28 +49,8 @@ var styles = StyleSheet.create({
   }
 });
 
-// const urlForQuery = 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
 
 class GifView extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     gifs: null
-  //   };
-  // }
-  //
-  // componentDidMount() {
-  //   this.fetchData();
-  // }
-  //
-  // fetchData() {
-  //   var query = urlForQuery;
-  //   request.get(query, (err, res) => {
-  //       // console.log(query);
-  //       // console.log(res.body.data[0]);
-  //     this.setState({gifs: res.body.data})
-  //   });
-  // }
 
   render() {
 
