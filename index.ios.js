@@ -1,3 +1,5 @@
+import request from 'superagent';
+
 'use strict';
 var React = require('react-native');
 var {
@@ -27,8 +29,25 @@ var styles = StyleSheet.create({
   }
 });
 
+function urlForQuery() {
+  return 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
+}
+
 class GiphyCatsApp extends Component {
+  constructor(props) {
+  super(props);
+  var query = urlForQuery();
+  request.get(query, function(err, res) {
+    console.log(query);
+    console.log(res.body.data[0]);
+   });
+  this.state = {
+    gifs: [],
+    }
+  }
   render() {
+
+
     return (
       <NavigatorIOS
         style={styles.container}
@@ -38,5 +57,6 @@ class GiphyCatsApp extends Component {
         }}/>
     );
   }
+
 }
 AppRegistry.registerComponent('GiphyCats', function() { return GiphyCatsApp });

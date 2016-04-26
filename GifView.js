@@ -1,4 +1,3 @@
-import request from 'superagent';
 
 'use strict';
 
@@ -48,17 +47,17 @@ var styles = StyleSheet.create({
   height: 300
   }
 });
-function urlForQuery() {
-  return 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
-};
+// function urlForQuery() {
+//   return 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
+// }
 
 class GifView extends Component {
-  constructor(props) {
-  super(props);
-  this.state = {
-    gifs: [],
-    }
-  }
+  // constructor(props) {
+  // super(props);
+  // this.state = {
+  //   gifs: [],
+  //   }
+  // }
   render() {
     return (
       <View style={styles.container}>
@@ -82,11 +81,11 @@ class GifView extends Component {
   onDonePressed() {}
 
   onNextPressed() {
-    var query = urlForQuery();
-    request.get(query, function(err, res) {
-      console.log(query);
-      console.log(res.body.data[0]);
-     });
+    // var query = urlForQuery();
+    // request.get(query, function(err, res) {
+    //   console.log(query);
+    //   console.log(res.body.data[0]);
+    //  });
   }
 }
 
