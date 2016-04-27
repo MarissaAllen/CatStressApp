@@ -51,12 +51,12 @@ var styles = StyleSheet.create({
 
 const urlForQuery = 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
 
-
 class GifView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifs: []
+      gifs: [],
+      itemNum: 0
 };
   }
   componentDidMount() {
@@ -67,12 +67,18 @@ class GifView extends Component {
     var query = urlForQuery;
     request.get(query, (err, res) => {
         // console.log(query);
-        console.log(res.body.data[0].images.downsized.url);
+        // console.log(res.body.data[0].images.downsized.url);
       this.setState({gifs: res.body.data})
     });
   }
+
   render() {
-    console.log(this.state.gifs[0]);
+    var gifList = this.state.gifs;
+    var gif = gifList[this.state.itemNum];
+    console.log(gif);
+
+    // var imageUrl = gif.images.downsized.url;
+
 
       return(
      <View style={styles.container}>
@@ -98,9 +104,11 @@ class GifView extends Component {
 
   onDonePressed() {}
 
-  onNextPressed() {}
+  onNextPressed() {
 //increment through the gif list and show the next gif
-
+var newNum = this.state.itemNum + 1;
+this.setState({itemNum: newNum});
+  }
 }
 
 
