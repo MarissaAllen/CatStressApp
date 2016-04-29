@@ -1,5 +1,3 @@
-import request from 'superagent';
-
 'use strict';
 
 var React = require('react-native');
@@ -30,29 +28,8 @@ var styles = StyleSheet.create({
   }
 });
 
-const urlForQuery = 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
-
-
 class GiphyCatsApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gifs: []
-    };
-  }
 
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    var query = urlForQuery;
-    request.get(query, (err, res) => {
-        // console.log(query);
-        // console.log(res.body.data[0].images.downsized.url);
-      this.setState({gifs: res.body.data})
-    });
-  }
 
   render() {
 
@@ -61,8 +38,7 @@ class GiphyCatsApp extends Component {
         style={styles.container}
         initialRoute={{
           title: 'GiphyCats',
-          component: GifView,
-          passProps: {gifs: this.state.gifs}
+          component: GifView
         }}/>
     );
   }
