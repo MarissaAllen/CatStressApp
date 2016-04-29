@@ -71,8 +71,7 @@ class GifView extends Component {
          {/*<Image style={styles.image} source={{ uri: gifs[0].images.downsized.url }} />*/}
 
        <Text style={styles.description}>
-         Soon there will be Gif Cats here
-       </Text>
+loading        </Text>
        <TouchableHighlight style={styles.button}
          underlayColor='#99d9f4'>
          <Text style={styles.buttonText} onPress={this.onNextPressed.bind(this)}>Next</Text>
