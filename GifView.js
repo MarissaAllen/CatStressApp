@@ -51,12 +51,13 @@ var styles = StyleSheet.create({
 
 const urlForQuery = 'http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC';
 
+
 class GifView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gifs: [],
-      itemNum: 0
+      itemNum: 0,
 };
   }
   componentDidMount() {
@@ -66,19 +67,20 @@ class GifView extends Component {
   fetchData() {
     var query = urlForQuery;
     request.get(query, (err, res) => {
-        // console.log(query);
-        // console.log(res.body.data[0].images.downsized.url);
-      this.setState({gifs: res.body.data})
+        // map the returned JSON object to new list with urls
+        var gifList = res.body.data.map(function(gifImg){
+          // return small gif urls
+          return {url: gifImg.images.downsized.url};
+        });
+        this.setState({gifs: gifList});
     });
   }
 
   render() {
-    var gifList = this.state.gifs;
-    var gif = gifList[this.state.itemNum];
-    console.log(gif);
-
-    // var imageUrl = gif.images.downsized.url;
-
+    var gif = this.state.gifs[this.state.itemNum];
+    // var url = gif.url;
+    if (gif != null){
+    console.log(gif.url);
 
       return(
      <View style={styles.container}>
@@ -86,12 +88,11 @@ class GifView extends Component {
          underlayColor='#99d9f4'>
          <Text style={styles.buttonText} onPress={this.onDonePressed.bind(this)}>Done</Text>
        </TouchableHighlight>
-         <Image style={styles.image}
-           source={require('./cavey.jpg')} />
-         {/*<Image style={styles.image} source={{ uri: gifs[0].images.downsized.url }} />*/}
+
+         <Image style={styles.image} source={{ uri: gif.url }} />
 
        <Text style={styles.description}>
-         Soon there will be Gif Cats here
+         Soon there will be lots of Gif Cats here
        </Text>
        <TouchableHighlight style={styles.button}
          underlayColor='#99d9f4'>
@@ -99,6 +100,16 @@ class GifView extends Component {
        </TouchableHighlight>
      </View>
    );
+}
+   else{
+     console.log("empty");
+     return(
+     <View style={styles.container}>
+       <Image style={styles.image} source={require('./cavey.jpg')} />
+       <Text style={styles.description}>loading...</Text>
+     </View>
+);
+   }
  }
 
 
