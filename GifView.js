@@ -58,6 +58,7 @@ class GifView extends Component {
     this.state = {
       gifs: [],
       itemNum: 0,
+      length: 0
 };
   }
 
@@ -73,28 +74,24 @@ class GifView extends Component {
           // return small gif urls
           return {url: gifImg.images.downsized.url};
         });
-        this.setState({gifs: gifList});
+        this.setState({gifs: gifList,
+                      length: gifList.length});
     });
   }
 
   render() {
     var gif = this.state.gifs[this.state.itemNum];
-    // var url = gif.url;
+    // var length = this.state.gifs.length;
+    console.log(gif);
     if (gif != null){
-    console.log(gif.url);
-
+      //if gif is not null render view with gif
       return(
      <View style={styles.container}>
        <TouchableHighlight style={styles.button}
          underlayColor='#99d9f4'>
          <Text style={styles.buttonText} onPress={this.onDonePressed.bind(this)}>Done</Text>
        </TouchableHighlight>
-
          <Image style={styles.image} source={{ uri: gif.url }} />
-
-       <Text style={styles.description}>
-         Soon there will be lots of Gif Cats here
-       </Text>
        <TouchableHighlight style={styles.button}
          underlayColor='#99d9f4'>
          <Text style={styles.buttonText} onPress={this.onNextPressed.bind(this)}>Next</Text>
@@ -102,8 +99,8 @@ class GifView extends Component {
      </View>
    );
 }
+//else render loading view
    else{
-     console.log("empty");
      return(
      <View style={styles.container}>
        <Image style={styles.image} source={require('./cavey.jpg')} />
@@ -117,8 +114,14 @@ class GifView extends Component {
   onDonePressed() {}
 
   onNextPressed() {
+  var newNum = 0;
+  var length = this.state.lenth;
+  var index = this.state.itemNum;
 //increment through the gif list and show the next gif
-var newNum = this.state.itemNum + 1;
+if (index < length - 1){
+newNum = index+ 1;
+}
+else{ newNum = 0;}
 this.setState({itemNum: newNum});
   }
 }
