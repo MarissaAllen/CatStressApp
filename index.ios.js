@@ -41,7 +41,7 @@ class GiphyCatsApp extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchData();
   }
 
