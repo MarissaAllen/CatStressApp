@@ -37,25 +37,42 @@ class GiphyCatsApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifs: []
+      gifs: [],
+      length: 0
     };
   }
 
-  componentWillMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
+  // componentWillMount() {
+  //   this.fetchData();
+  // }
+  //
+  // fetchData() {
+  //   var query = urlForQuery;
+  //   request.get(query, (err, res) => {
+  //       // map the returned JSON object to new list with urls
+  //       var gifList = res.body.data.map(function(gifImg){
+  //         // return small gif urls
+  //         return {url: gifImg.images.downsized.url};
+  //       });
+  //       this.setState({gifs: gifList,
+  //                     length: gifList.length});
+  //   });
+  // }
+fetchData() {
     var query = urlForQuery;
     request.get(query, (err, res) => {
-        // console.log(query);
-        // console.log(res.body.data[0].images.downsized.url);
-      this.setState({gifs: res.body.data})
+        // map the returned JSON object to new list with urls
+        var gifList = res.body.data.map(function(gifImg){
+          // return small gif urls
+          return {url: gifImg.images.downsized.url};
+        });
+        this.setState({gifs: gifList,
+                      length: gifList.length});
     });
   }
 
   render() {
-
+console.log(this.state.gifs[0]);
     return (
       <NavigatorIOS
         style={styles.container}
