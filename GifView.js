@@ -83,18 +83,19 @@ class GifView extends Component {
     var gif = this.state.gifs[this.state.itemNum];
     // var length = this.state.gifs.length;
     console.log(gif);
+
     if (gif != null){
       //if gif is not null render view with gif
       return(
      <View style={styles.container}>
-       <TouchableHighlight style={styles.button}
+       <TouchableHighlight style={styles.button} onPress={this.onDonePressed.bind(this)}
          underlayColor='#99d9f4'>
-         <Text style={styles.buttonText} onPress={this.onDonePressed.bind(this)}>Done</Text>
+         <Text style={styles.buttonText}>Done</Text>
        </TouchableHighlight>
          <Image style={styles.image} source={{ uri: gif.url }} />
-       <TouchableHighlight style={styles.button}
+       <TouchableHighlight style={styles.button} onPress={this.onNextPressed.bind(this)}
          underlayColor='#99d9f4'>
-         <Text style={styles.buttonText} onPress={this.onNextPressed.bind(this)}>Next</Text>
+         <Text style={styles.buttonText}>Next</Text>
        </TouchableHighlight>
      </View>
    );
@@ -117,6 +118,8 @@ class GifView extends Component {
   var newNum = 0;
   var length = this.state.lenth;
   var index = this.state.itemNum;
+  console.log(index);
+
 //increment through the gif list and show the next gif
 if (index < length - 1){
 newNum = index+ 1;
