@@ -81,8 +81,9 @@ class GifView extends Component {
 
   render() {
     var gif = this.state.gifs[this.state.itemNum];
-    // var length = this.state.gifs.length;
-    console.log(gif);
+    var length = this.state.gifs.length;
+    // console.log(gif);
+    // console.log(length);
 
     if (gif != null){
       //if gif is not null render view with gif
@@ -116,16 +117,14 @@ class GifView extends Component {
 
   onNextPressed() {
   var newNum = 0;
-  var length = this.state.lenth;
+  var length = this.state.length - 1;
   var index = this.state.itemNum;
-  console.log(index);
 
-//increment through the gif list and show the next gif
-if (index < length - 1){
-newNum = index+ 1;
-}
-else{ newNum = 0;}
-this.setState({itemNum: newNum});
+  //increment through the gif list and show the next gif
+  if (index < length){
+    newNum = index+1;
+  }
+  this.setState({itemNum: newNum});
   }
 }
 
